@@ -1,399 +1,343 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#06110b" />
+  <meta name="theme-color" content="#050806" />
+  <meta name="description" content="Secure access to the PredictorPro prediction platform." />
   <title>PredictorPro – Login</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      color-scheme: dark;
-      --green: #22c55e;
-      --green-soft: #4ade80;
-      --panel: rgba(8, 16, 12, .72);
-      --panel-border: rgba(74, 222, 128, .18);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      min-height: 100vh;
-      margin: 0;
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle at 18% 12%, rgba(34,197,94,.15), transparent 30%),
-        radial-gradient(circle at 86% 78%, rgba(16,185,129,.12), transparent 34%),
-        linear-gradient(145deg, #020604 0%, #07110b 52%, #061b10 100%);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .22;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: linear-gradient(to bottom, black, transparent 88%);
-    }
-
-    .orb {
-      position: fixed;
-      border-radius: 9999px;
-      filter: blur(90px);
-      pointer-events: none;
-      opacity: .26;
-    }
-
-    .orb-one { width: 300px; height: 300px; background: #16a34a; top: -100px; left: -90px; }
-    .orb-two { width: 360px; height: 360px; background: #047857; right: -150px; bottom: -150px; }
-
-    .glass {
-      background: linear-gradient(145deg, rgba(14, 28, 20, .82), rgba(4, 10, 7, .72));
-      border: 1px solid var(--panel-border);
-      box-shadow: 0 30px 90px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.04);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-    }
-
-    .logo-ring {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .logo-ring::before {
-      content: "";
-      position: absolute;
-      inset: -12px;
-      z-index: -1;
-      border-radius: 9999px;
-      background: conic-gradient(from 90deg, rgba(34,197,94,.15), rgba(74,222,128,.85), rgba(34,197,94,.12));
-      filter: blur(12px);
-      opacity: .65;
-    }
-
-    .modern-input {
-      width: 100%;
-      border-radius: 1rem;
-      border: 1px solid rgba(148,163,184,.16);
-      background: rgba(255,255,255,.045);
-      color: white;
-      padding: .95rem 1rem;
-      outline: none;
-      transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
-    }
-
-    .modern-input::placeholder { color: rgb(148 163 184); }
-
-    .modern-input:focus {
-      border-color: rgba(74,222,128,.72);
-      background: rgba(255,255,255,.065);
-      box-shadow: 0 0 0 4px rgba(34,197,94,.09);
-    }
-
-    .language-button,
-    .language-menu {
-      background: rgba(7, 16, 11, .78);
-      border: 1px solid rgba(74,222,128,.18);
-      box-shadow: 0 14px 45px rgba(0,0,0,.35);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .login-button {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      border: 1px solid rgba(74,222,128,.35);
-      background: linear-gradient(135deg, #16a34a, #15803d);
-      box-shadow: 0 14px 34px rgba(22,163,74,.23), inset 0 1px 0 rgba(255,255,255,.18);
-      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-    }
-
-    .login-button::before {
-      content: "";
-      position: absolute;
-      width: 45%;
-      height: 220%;
-      top: -60%;
-      left: -70%;
-      transform: rotate(24deg);
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
-      transition: left .55s ease;
-    }
-
-    .login-button:hover { transform: translateY(-2px); box-shadow: 0 18px 42px rgba(22,163,74,.3); }
-    .login-button:hover::before { left: 130%; }
-    .login-button:active { transform: translateY(0); }
-
-    #entryArrow { transition: transform .2s ease; }
-    html[dir="rtl"] #entryArrow { transform: rotate(180deg); }
-
-    .status-success,
-    .status-error {
-      min-height: 28px;
-      border-radius: .85rem;
-      padding: .45rem .75rem;
-      font-size: .9rem;
-      font-weight: 700;
-    }
-
-    .status-success { color: #86efac; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.18); }
-    .status-error { color: #fca5a5; background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.18); }
-
-    @media (max-width: 640px) {
-      body { background-attachment: fixed; }
-      .glass { border-radius: 1.5rem; }
-    }
-  </style>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <link rel="stylesheet" href="styles/predictorpro-ui.css" />
 </head>
-<body class="text-white antialiased">
-  <div class="orb orb-one"></div>
-  <div class="orb orb-two"></div>
+<body class="diamond-bg min-h-screen">
+  <header class="fixed inset-x-0 top-0 z-50 pointer-events-none">
+    <div class="mx-auto flex max-w-6xl justify-end px-4 py-4 sm:px-6">
+      <div class="relative pointer-events-auto">
+        <button
+          id="langBtn"
+          type="button"
+          class="pp-chip inline-flex h-11 items-center gap-2 px-4 text-sm font-semibold"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="Select language"
+        >
+          <span aria-hidden="true">🌐</span>
+          <span id="langBtnLabel">English</span>
+          <span class="text-xs opacity-50" aria-hidden="true">⌄</span>
+        </button>
 
-  <div class="fixed top-4 right-4 z-40">
-    <div class="relative">
-      <button id="langBtn"
-              class="language-button h-11 px-4 rounded-full text-sm font-semibold flex items-center gap-2 text-slate-100 hover:border-green-400/40 transition"
-              aria-haspopup="true" aria-expanded="false" aria-label="Select language">
-        <span class="text-base">🌐</span>
-        <span id="langBtnLabel">English</span>
-        <span class="text-slate-500">⌄</span>
-      </button>
-
-      <div id="langMenu"
-           class="language-menu hidden absolute right-0 mt-2 min-w-40 rounded-2xl overflow-hidden text-sm z-50 p-1.5">
-        <button data-lang="ar" class="w-full rounded-xl text-right px-3 py-2.5 hover:bg-white/5 transition">العربية</button>
-        <button data-lang="es" class="w-full rounded-xl text-left px-3 py-2.5 hover:bg-white/5 transition">Español</button>
-        <button data-lang="en" class="w-full rounded-xl text-left px-3 py-2.5 hover:bg-white/5 transition">English</button>
-        <button data-lang="pl" class="w-full rounded-xl text-left px-3 py-2.5 hover:bg-white/5 transition">Polski</button>
-        <button data-lang="fr" class="w-full rounded-xl text-left px-3 py-2.5 hover:bg-white/5 transition">Français</button>
+        <nav
+          id="langMenu"
+          class="glass-menu hidden absolute right-0 mt-2 min-w-40 p-1.5 text-sm"
+          aria-label="Language selection"
+        >
+          <button data-lang="ar" type="button" class="w-full rounded-xl px-3 py-2.5 text-right">العربية</button>
+          <button data-lang="es" type="button" class="w-full rounded-xl px-3 py-2.5 text-left">Español</button>
+          <button data-lang="en" type="button" class="w-full rounded-xl px-3 py-2.5 text-left">English</button>
+          <button data-lang="pl" type="button" class="w-full rounded-xl px-3 py-2.5 text-left">Polski</button>
+          <button data-lang="fr" type="button" class="w-full rounded-xl px-3 py-2.5 text-left">Français</button>
+        </nav>
       </div>
     </div>
-  </div>
+  </header>
 
-  <main class="relative min-h-screen flex items-center justify-center px-4 py-20 sm:py-16">
-    <section class="glass w-full max-w-[980px] rounded-[2rem] p-5 sm:p-8 lg:p-10 grid lg:grid-cols-[1.05fr_.95fr] gap-8 lg:gap-12 items-center">
-      <div class="hidden lg:flex flex-col justify-between self-stretch py-3">
-        <div>
-          <div class="inline-flex items-center gap-2 rounded-full border border-green-400/15 bg-green-400/5 px-3 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-green-300">
-            <span class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_14px_rgba(74,222,128,.8)]"></span>
-            PredictorPro
-          </div>
-          <h1 class="mt-7 text-4xl xl:text-5xl font-black tracking-tight leading-[1.05]">
-            Smart predictions.<br><span class="text-green-400">Cleaner experience.</span>
-          </h1>
-          <p class="mt-5 max-w-md text-slate-400 leading-7 text-[15px]">
-            Access your PredictorPro workspace through a faster, clearer and more focused interface designed for desktop and mobile.
+  <main class="pp-login-shell">
+    <section class="pp-login-card" aria-labelledby="loginHeading">
+      <aside class="pp-login-brand" aria-label="PredictorPro">
+        <img
+          src="images/PredictorPro.jpg"
+          alt="PredictorPro"
+          class="pp-login-logo"
+          width="160"
+          height="160"
+        />
+
+        <div class="pp-login-brand-copy">
+          <p class="mb-3 text-xs font-bold uppercase tracking-[.24em] text-green-400">PredictorPro</p>
+          <h1>Prediction tools.<br><span>One focused workspace.</span></h1>
+          <p>
+            Access the same PredictorPro tools through a cleaner, faster interface designed for mobile and desktop.
           </p>
         </div>
+      </aside>
 
-        <div class="grid grid-cols-3 gap-3 mt-12">
-          <div class="rounded-2xl border border-white/5 bg-white/[.025] p-4">
-            <div class="text-green-400 font-black text-lg">24/7</div>
-            <div class="text-xs text-slate-500 mt-1">Access</div>
-          </div>
-          <div class="rounded-2xl border border-white/5 bg-white/[.025] p-4">
-            <div class="text-green-400 font-black text-lg">5</div>
-            <div class="text-xs text-slate-500 mt-1">Languages</div>
-          </div>
-          <div class="rounded-2xl border border-white/5 bg-white/[.025] p-4">
-            <div class="text-green-400 font-black text-lg">Live</div>
-            <div class="text-xs text-slate-500 mt-1">Platform</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full max-w-md mx-auto">
-        <div class="text-center mb-7">
-          <div class="logo-ring w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full p-[3px] bg-gradient-to-br from-green-300/80 via-green-600 to-emerald-950 shadow-2xl">
-            <div class="w-full h-full rounded-full overflow-hidden bg-black p-1">
-              <img src="images/PredictorPro.jpg" alt="PredictorPro" class="w-full h-full rounded-full object-cover" />
-            </div>
-          </div>
-          <h2 id="loginHeading" class="mt-6 text-2xl sm:text-3xl font-black tracking-tight">Welcome back</h2>
-          <p id="loginSubheading" class="mt-2 text-sm text-slate-400">Enter your account details to continue.</p>
+      <section class="pp-login-panel">
+        <div>
+          <p class="mb-3 text-xs font-bold uppercase tracking-[.2em] text-green-500">Secure access</p>
+          <h2 id="loginHeading">Welcome back</h2>
+          <p id="loginSubheading" class="pp-subtitle">Enter your account details to continue.</p>
         </div>
 
-        <div class="space-y-3.5">
-          <label class="block">
-            <span id="idLabel" class="block text-xs font-bold text-slate-400 mb-2 ml-1">Account ID</span>
-            <input id="idInput" type="text" autocomplete="username" placeholder="Enter your ID" class="modern-input" />
+        <form id="loginForm" class="pp-login-form" novalidate>
+          <label for="idInput" class="grid gap-2">
+            <span id="idLabel" class="text-xs font-bold text-slate-500 dark:text-slate-400">Account ID</span>
+            <input
+              id="idInput"
+              class="pp-input"
+              type="text"
+              autocomplete="username"
+              inputmode="numeric"
+              placeholder="Enter your ID"
+              required
+            />
           </label>
 
-          <label class="block">
-            <span id="passwordLabel" class="block text-xs font-bold text-slate-400 mb-2 ml-1">Password</span>
-            <div class="relative">
-              <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Enter your password" class="modern-input pr-12" />
-              <button id="togglePassword" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-xl flex items-center justify-center hover:bg-white/5 transition">
-                <img id="eyeIcon" src="images/c57d670f90a4982a2c30cff881624fad.png" alt="Show password" class="w-5 h-5 opacity-75"/>
+          <label for="passwordInput" class="grid gap-2">
+            <span id="passwordLabel" class="text-xs font-bold text-slate-500 dark:text-slate-400">Password</span>
+            <span class="pp-field block">
+              <input
+                id="passwordInput"
+                class="pp-input pr-12"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                id="togglePassword"
+                class="pp-password-toggle right-2.5"
+                type="button"
+                aria-label="Show password"
+              >
+                <img
+                  id="eyeIcon"
+                  src="images/c57d670f90a4982a2c30cff881624fad.png"
+                  alt=""
+                  class="h-5 w-5 opacity-75"
+                />
               </button>
-            </div>
+            </span>
           </label>
 
-          <button id="entryBtn" type="button" class="login-button rounded-2xl px-5 py-3.5 font-black flex items-center justify-center gap-2 mt-2">
+          <button id="entryBtn" class="pp-btn pp-login-submit" type="submit">
             <span id="entryLabel">Continue</span>
             <span id="entryArrow" aria-hidden="true">→</span>
           </button>
 
-          <div id="entryStatus" class="text-center"></div>
-        </div>
+          <p id="entryStatus" class="pp-login-status" role="status" aria-live="polite"></p>
+        </form>
 
-        <div class="mt-6 pt-5 border-t border-white/5 flex items-center justify-center gap-2 text-xs text-slate-500">
-          <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+        <footer class="mt-6 flex items-center gap-2 border-t border-green-500/10 pt-5 text-xs text-slate-500 dark:text-slate-400">
+          <span class="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_12px_rgba(34,197,94,.65)]" aria-hidden="true"></span>
           <span id="secureLabel">Secure access to PredictorPro</span>
-        </div>
-      </div>
+        </footer>
+      </section>
     </section>
   </main>
 
   <script>
     const I18N = {
       ar: {
-        langName: 'العربية', langTag: 'ar-DZ', dir: 'rtl', title: 'PredictorPro – صفحة تسجيل الدخول',
-        idPlaceholder: 'أدخل رقم التعريف تاعك', pwdPlaceholder: 'أدخل كلمة المرور', showPwd: 'إظهار كلمة المرور', hidePwd: 'إخفاء كلمة المرور',
-        statusConnected: 'متصل', statusUnverified: 'الحساب غير موثق', ariaLang: 'اختيار اللغة',
-        heading: 'مرحبا بعودتك', subheading: 'أدخل معلومات حسابك للمتابعة.', idLabel: 'رقم الحساب', passwordLabel: 'كلمة المرور', entryLabel: 'متابعة', secure: 'دخول آمن إلى PredictorPro'
+        langName: 'العربية',
+        langTag: 'ar-DZ',
+        dir: 'rtl',
+        title: 'PredictorPro – صفحة تسجيل الدخول',
+        idPlaceholder: 'أدخل رقم التعريف تاعك',
+        pwdPlaceholder: 'أدخل كلمة المرور',
+        showPwd: 'إظهار كلمة المرور',
+        hidePwd: 'إخفاء كلمة المرور',
+        statusConnected: 'متصل',
+        statusUnverified: 'الحساب غير موثق',
+        ariaLang: 'اختيار اللغة',
+        heading: 'مرحبا بعودتك',
+        subheading: 'أدخل معلومات حسابك للمتابعة.',
+        idLabel: 'رقم الحساب',
+        passwordLabel: 'كلمة المرور',
+        entryLabel: 'متابعة',
+        secure: 'دخول آمن إلى PredictorPro'
       },
       es: {
-        langName: 'Español', langTag: 'es-PE', dir: 'ltr', title: 'PredictorPro – Página de inicio de sesión',
-        idPlaceholder: 'Ingresa tu ID', pwdPlaceholder: 'Ingresa tu contraseña', showPwd: 'Mostrar contraseña', hidePwd: 'Ocultar contraseña',
-        statusConnected: 'Conectado', statusUnverified: 'Cuenta no verificada', ariaLang: 'Seleccionar idioma',
-        heading: 'Bienvenido de nuevo', subheading: 'Introduce los datos de tu cuenta para continuar.', idLabel: 'ID de cuenta', passwordLabel: 'Contraseña', entryLabel: 'Continuar', secure: 'Acceso seguro a PredictorPro'
+        langName: 'Español',
+        langTag: 'es-PE',
+        dir: 'ltr',
+        title: 'PredictorPro – Página de inicio de sesión',
+        idPlaceholder: 'Ingresa tu ID',
+        pwdPlaceholder: 'Ingresa tu contraseña',
+        showPwd: 'Mostrar contraseña',
+        hidePwd: 'Ocultar contraseña',
+        statusConnected: 'Conectado',
+        statusUnverified: 'Cuenta no verificada',
+        ariaLang: 'Seleccionar idioma',
+        heading: 'Bienvenido de nuevo',
+        subheading: 'Introduce los datos de tu cuenta para continuar.',
+        idLabel: 'ID de cuenta',
+        passwordLabel: 'Contraseña',
+        entryLabel: 'Continuar',
+        secure: 'Acceso seguro a PredictorPro'
       },
       en: {
-        langName: 'English', langTag: 'en', dir: 'ltr', title: 'PredictorPro – Login page',
-        idPlaceholder: 'Enter your ID', pwdPlaceholder: 'Enter your password', showPwd: 'Show password', hidePwd: 'Hide password',
-        statusConnected: 'Connected', statusUnverified: 'Account not verified', ariaLang: 'Select language',
-        heading: 'Welcome back', subheading: 'Enter your account details to continue.', idLabel: 'Account ID', passwordLabel: 'Password', entryLabel: 'Continue', secure: 'Secure access to PredictorPro'
+        langName: 'English',
+        langTag: 'en',
+        dir: 'ltr',
+        title: 'PredictorPro – Login page',
+        idPlaceholder: 'Enter your ID',
+        pwdPlaceholder: 'Enter your password',
+        showPwd: 'Show password',
+        hidePwd: 'Hide password',
+        statusConnected: 'Connected',
+        statusUnverified: 'Account not verified',
+        ariaLang: 'Select language',
+        heading: 'Welcome back',
+        subheading: 'Enter your account details to continue.',
+        idLabel: 'Account ID',
+        passwordLabel: 'Password',
+        entryLabel: 'Continue',
+        secure: 'Secure access to PredictorPro'
       },
       pl: {
-        langName: 'Polski', langTag: 'pl', dir: 'ltr', title: 'PredictorPro – Strona logowania',
-        idPlaceholder: 'Wpisz swój identyfikator', pwdPlaceholder: 'Wpisz swoje hasło', showPwd: 'Pokaż hasło', hidePwd: 'Ukryj hasło',
-        statusConnected: 'Połączono', statusUnverified: 'Konto niezweryfikowane', ariaLang: 'Wybierz język',
-        heading: 'Witaj ponownie', subheading: 'Wprowadź dane konta, aby kontynuować.', idLabel: 'ID konta', passwordLabel: 'Hasło', entryLabel: 'Kontynuuj', secure: 'Bezpieczny dostęp do PredictorPro'
+        langName: 'Polski',
+        langTag: 'pl',
+        dir: 'ltr',
+        title: 'PredictorPro – Strona logowania',
+        idPlaceholder: 'Wpisz swój identyfikator',
+        pwdPlaceholder: 'Wpisz swoje hasło',
+        showPwd: 'Pokaż hasło',
+        hidePwd: 'Ukryj hasło',
+        statusConnected: 'Połączono',
+        statusUnverified: 'Konto niezweryfikowane',
+        ariaLang: 'Wybierz język',
+        heading: 'Witaj ponownie',
+        subheading: 'Wprowadź dane konta, aby kontynuować.',
+        idLabel: 'ID konta',
+        passwordLabel: 'Hasło',
+        entryLabel: 'Kontynuuj',
+        secure: 'Bezpieczny dostęp do PredictorPro'
       },
       fr: {
-        langName: 'Français', langTag: 'fr', dir: 'ltr', title: 'PredictorPro – Page de connexion',
-        idPlaceholder: 'Entrez votre identifiant', pwdPlaceholder: 'Entrez votre mot de passe', showPwd: 'Afficher le mot de passe', hidePwd: 'Masquer le mot de passe',
-        statusConnected: 'Connecté', statusUnverified: 'Compte non vérifié', ariaLang: 'Choisir la langue',
-        heading: 'Bon retour', subheading: 'Saisissez vos informations pour continuer.', idLabel: 'Identifiant du compte', passwordLabel: 'Mot de passe', entryLabel: 'Continuer', secure: 'Accès sécurisé à PredictorPro'
+        langName: 'Français',
+        langTag: 'fr',
+        dir: 'ltr',
+        title: 'PredictorPro – Page de connexion',
+        idPlaceholder: 'Entrez votre identifiant',
+        pwdPlaceholder: 'Entrez votre mot de passe',
+        showPwd: 'Afficher le mot de passe',
+        hidePwd: 'Masquer le mot de passe',
+        statusConnected: 'Connecté',
+        statusUnverified: 'Compte non vérifié',
+        ariaLang: 'Choisir la langue',
+        heading: 'Bon retour',
+        subheading: 'Saisissez les informations de votre compte pour continuer.',
+        idLabel: 'Identifiant',
+        passwordLabel: 'Mot de passe',
+        entryLabel: 'Continuer',
+        secure: 'Accès sécurisé à PredictorPro'
       }
     };
 
+    const VALID_ID_PREFIXES = ['179', '170', '172', '178', '168', '173', '176', '169', '175', '177', '171'];
+    const VALID_PASSWORDS = ['KWZ32W', '0000'];
+
     const htmlEl = document.documentElement;
-    const titleEl = document.querySelector('title');
+    const langBtn = document.getElementById('langBtn');
+    const langBtnLabel = document.getElementById('langBtnLabel');
+    const langMenu = document.getElementById('langMenu');
+    const loginForm = document.getElementById('loginForm');
     const idInput = document.getElementById('idInput');
     const pwdInput = document.getElementById('passwordInput');
     const togglePwdBtn = document.getElementById('togglePassword');
     const eyeIcon = document.getElementById('eyeIcon');
-    const entryBtn = document.getElementById('entryBtn');
     const entryStatus = document.getElementById('entryStatus');
-    const langBtn = document.getElementById('langBtn');
-    const langBtnLabel = document.getElementById('langBtnLabel');
-    const langMenu = document.getElementById('langMenu');
-    const loginHeading = document.getElementById('loginHeading');
-    const loginSubheading = document.getElementById('loginSubheading');
-    const idLabel = document.getElementById('idLabel');
-    const passwordLabel = document.getElementById('passwordLabel');
-    const entryLabel = document.getElementById('entryLabel');
-    const secureLabel = document.getElementById('secureLabel');
+    const entryArrow = document.getElementById('entryArrow');
 
-    function currentLanguage() {
+    const getCurrentLanguage = () => {
       try {
         const saved = localStorage.getItem('preferredLang');
         if (saved && I18N[saved]) return saved;
       } catch (_) {}
-      const tag = htmlEl.lang || '';
-      if (tag.startsWith('ar')) return 'ar';
-      if (tag.startsWith('es')) return 'es';
-      if (tag.startsWith('pl')) return 'pl';
-      if (tag.startsWith('fr')) return 'fr';
+
+      const lang = htmlEl.lang || 'en';
+      if (lang.startsWith('ar')) return 'ar';
+      if (lang.startsWith('es')) return 'es';
+      if (lang.startsWith('pl')) return 'pl';
+      if (lang.startsWith('fr')) return 'fr';
       return 'en';
-    }
+    };
 
     function setDirectionalUI(dir) {
-      togglePwdBtn.classList.remove('left-3', 'right-3');
-      pwdInput.classList.remove('pl-12', 'pr-12');
-      if (dir === 'rtl') {
-        togglePwdBtn.classList.add('left-3');
-        pwdInput.classList.add('pl-12');
-      } else {
-        togglePwdBtn.classList.add('right-3');
-        pwdInput.classList.add('pr-12');
-      }
+      togglePwdBtn.classList.remove('left-2.5', 'right-2.5');
+      togglePwdBtn.classList.add(dir === 'rtl' ? 'left-2.5' : 'right-2.5');
+      pwdInput.classList.toggle('pl-12', dir === 'rtl');
+      pwdInput.classList.toggle('pr-12', dir !== 'rtl');
+      entryArrow.style.transform = dir === 'rtl' ? 'rotate(180deg)' : 'none';
     }
 
     function applyLang(code) {
       const dict = I18N[code] || I18N.en;
       htmlEl.lang = dict.langTag;
       htmlEl.dir = dict.dir;
-      titleEl.textContent = dict.title;
+      document.title = dict.title;
+
       idInput.placeholder = dict.idPlaceholder;
       pwdInput.placeholder = dict.pwdPlaceholder;
-      loginHeading.textContent = dict.heading;
-      loginSubheading.textContent = dict.subheading;
-      idLabel.textContent = dict.idLabel;
-      passwordLabel.textContent = dict.passwordLabel;
-      entryLabel.textContent = dict.entryLabel;
-      secureLabel.textContent = dict.secure;
       langBtnLabel.textContent = dict.langName;
       langBtn.setAttribute('aria-label', dict.ariaLang);
-      eyeIcon.alt = pwdInput.type === 'password' ? dict.showPwd : dict.hidePwd;
+      document.getElementById('loginHeading').textContent = dict.heading;
+      document.getElementById('loginSubheading').textContent = dict.subheading;
+      document.getElementById('idLabel').textContent = dict.idLabel;
+      document.getElementById('passwordLabel').textContent = dict.passwordLabel;
+      document.getElementById('entryLabel').textContent = dict.entryLabel;
+      document.getElementById('secureLabel').textContent = dict.secure;
 
-      if (entryStatus.textContent.trim()) {
-        const txt = entryStatus.textContent.trim();
-        const connectedVals = Object.values(I18N).map(d => d.statusConnected);
-        const unverifiedVals = Object.values(I18N).map(d => d.statusUnverified);
-        if (connectedVals.includes(txt)) entryStatus.textContent = dict.statusConnected;
-        if (unverifiedVals.includes(txt)) entryStatus.textContent = dict.statusUnverified;
-      }
+      const isHidden = pwdInput.type === 'password';
+      togglePwdBtn.setAttribute('aria-label', isHidden ? dict.showPwd : dict.hidePwd);
+
+      if (entryStatus.dataset.state === 'success') entryStatus.textContent = dict.statusConnected;
+      if (entryStatus.dataset.state === 'error') entryStatus.textContent = dict.statusUnverified;
 
       setDirectionalUI(dict.dir);
+
       try { localStorage.setItem('preferredLang', code); } catch (_) {}
     }
 
     togglePwdBtn.addEventListener('click', () => {
       const isHidden = pwdInput.type === 'password';
       pwdInput.type = isHidden ? 'text' : 'password';
-      eyeIcon.src = isHidden ? 'images/4ecf8821a5f31ac849aa0a6ed02aaf6d.png' : 'images/c57d670f90a4982a2c30cff881624fad.png';
-      const dict = I18N[currentLanguage()];
-      eyeIcon.alt = isHidden ? dict.hidePwd : dict.showPwd;
+      const dict = I18N[getCurrentLanguage()];
+      eyeIcon.src = isHidden
+        ? 'images/4ecf8821a5f31ac849aa0a6ed02aaf6d.png'
+        : 'images/c57d670f90a4982a2c30cff881624fad.png';
+      togglePwdBtn.setAttribute('aria-label', isHidden ? dict.hidePwd : dict.showPwd);
     });
 
-    function attemptLogin() {
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
       const id = idInput.value.trim();
       const pwd = pwdInput.value;
-      const dict = I18N[currentLanguage()];
-      const validPrefixes = ['179','170','172','178','168','173','176','169','175','177','171'];
-      const validId = validPrefixes.some(prefix => id.startsWith(prefix));
-      const validPassword = pwd === 'KWZ32W' || pwd === '0000';
+      const dict = I18N[getCurrentLanguage()];
+      const isValidId = VALID_ID_PREFIXES.some(prefix => id.startsWith(prefix));
+      const isValidPassword = VALID_PASSWORDS.includes(pwd);
 
-      if (validId && validPassword) {
+      if (isValidId && isValidPassword) {
         entryStatus.textContent = dict.statusConnected;
-        entryStatus.className = 'status-success text-center';
-        entryBtn.disabled = true;
-        entryBtn.style.opacity = '.72';
+        entryStatus.className = 'pp-login-status success';
+        entryStatus.dataset.state = 'success';
         setTimeout(() => { window.location.href = 'main.html'; }, 500);
-      } else {
-        entryStatus.textContent = dict.statusUnverified;
-        entryStatus.className = 'status-error text-center';
+        return;
       }
-    }
 
-    entryBtn.addEventListener('click', attemptLogin);
-    [idInput, pwdInput].forEach(input => input.addEventListener('keydown', event => {
-      if (event.key === 'Enter') attemptLogin();
-    }));
+      entryStatus.textContent = dict.statusUnverified;
+      entryStatus.className = 'pp-login-status error';
+      entryStatus.dataset.state = 'error';
+    });
 
-    langBtn.addEventListener('click', event => {
+    langBtn.addEventListener('click', (event) => {
       event.stopPropagation();
-      const isOpen = !langMenu.classList.contains('hidden');
-      langMenu.classList.toggle('hidden', isOpen);
-      langBtn.setAttribute('aria-expanded', String(!isOpen));
+      const willOpen = langMenu.classList.contains('hidden');
+      langMenu.classList.toggle('hidden', !willOpen);
+      langBtn.setAttribute('aria-expanded', String(willOpen));
+    });
+
+    langMenu.querySelectorAll('button[data-lang]').forEach(item => {
+      item.addEventListener('click', () => {
+        applyLang(item.dataset.lang || 'en');
+        langMenu.classList.add('hidden');
+        langBtn.setAttribute('aria-expanded', 'false');
+      });
     });
 
     document.addEventListener('click', () => {
@@ -401,21 +345,7 @@
       langBtn.setAttribute('aria-expanded', 'false');
     });
 
-    langMenu.querySelectorAll('button[data-lang]').forEach(item => {
-      item.addEventListener('click', event => {
-        event.stopPropagation();
-        applyLang(item.dataset.lang || 'en');
-        langMenu.classList.add('hidden');
-        langBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    let initialLanguage = 'en';
-    try {
-      const saved = localStorage.getItem('preferredLang');
-      if (saved && I18N[saved]) initialLanguage = saved;
-    } catch (_) {}
-    applyLang(initialLanguage);
+    applyLang(getCurrentLanguage());
   </script>
 </body>
 </html>
