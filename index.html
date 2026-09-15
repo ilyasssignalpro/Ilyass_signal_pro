@@ -6,35 +6,18 @@
   <meta name="theme-color" content="#050806" />
   <meta name="description" content="Secure access to the PredictorPro prediction platform." />
   <title>PredictorPro – Login</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
   <link rel="stylesheet" href="styles/predictorpro-ui.css" />
 </head>
 <body class="diamond-bg min-h-screen">
   <header class="fixed inset-x-0 top-0 z-50 pointer-events-none">
     <div class="mx-auto flex max-w-6xl justify-end px-4 py-4 sm:px-6">
       <div class="relative pointer-events-auto">
-        <button
-          id="langBtn"
-          type="button"
-          class="pp-chip inline-flex h-11 items-center gap-2 px-4 text-sm font-semibold"
-          aria-haspopup="true"
-          aria-expanded="false"
-          aria-label="Select language"
-        >
-          <span aria-hidden="true">🌐</span>
-          <span id="langBtnLabel">English</span>
-          <span class="text-xs opacity-50" aria-hidden="true">⌄</span>
+        <button id="langBtn" type="button" class="pp-chip inline-flex h-11 items-center gap-2 px-4 text-sm font-semibold" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+          <span aria-hidden="true">🌐</span><span id="langBtnLabel">English</span><span class="text-xs opacity-50" aria-hidden="true">⌄</span>
         </button>
-
-        <nav
-          id="langMenu"
-          class="glass-menu hidden absolute right-0 mt-2 min-w-40 p-1.5 text-sm"
-          aria-label="Language selection"
-        >
+        <nav id="langMenu" class="glass-menu hidden absolute right-0 mt-2 min-w-40 p-1.5 text-sm" aria-label="Language selection">
           <button data-lang="ar" type="button" class="w-full rounded-xl px-3 py-2.5 text-right">العربية</button>
           <button data-lang="es" type="button" class="w-full rounded-xl px-3 py-2.5 text-left">Español</button>
           <button data-lang="en" type="button" class="w-full rounded-xl px-3 py-2.5 text-left">English</button>
@@ -48,20 +31,11 @@
   <main class="pp-login-shell">
     <section class="pp-login-card" aria-labelledby="loginHeading">
       <aside class="pp-login-brand" aria-label="PredictorPro">
-        <img
-          src="images/PredictorPro.jpg"
-          alt="PredictorPro"
-          class="pp-login-logo"
-          width="160"
-          height="160"
-        />
-
+        <img src="images/PredictorPro.jpg" alt="PredictorPro" class="pp-login-logo" width="160" height="160" />
         <div class="pp-login-brand-copy">
           <p class="mb-3 text-xs font-bold uppercase tracking-[.24em] text-green-400">PredictorPro</p>
           <h1>Prediction tools.<br><span>One focused workspace.</span></h1>
-          <p>
-            Access the same PredictorPro tools through a cleaner, faster interface designed for mobile and desktop.
-          </p>
+          <p>Access PredictorPro through a cleaner, faster interface designed for mobile and desktop.</p>
         </div>
       </aside>
 
@@ -75,49 +49,22 @@
         <form id="loginForm" class="pp-login-form" novalidate>
           <label for="idInput" class="grid gap-2">
             <span id="idLabel" class="text-xs font-bold text-slate-500 dark:text-slate-400">Account ID</span>
-            <input
-              id="idInput"
-              class="pp-input"
-              type="text"
-              autocomplete="username"
-              inputmode="numeric"
-              placeholder="Enter your ID"
-              required
-            />
+            <input id="idInput" class="pp-input" type="text" autocomplete="username" inputmode="numeric" placeholder="Enter your ID" required />
           </label>
 
           <label for="passwordInput" class="grid gap-2">
             <span id="passwordLabel" class="text-xs font-bold text-slate-500 dark:text-slate-400">Password</span>
             <span class="pp-field block">
-              <input
-                id="passwordInput"
-                class="pp-input pr-12"
-                type="password"
-                autocomplete="current-password"
-                placeholder="Enter your password"
-                required
-              />
-              <button
-                id="togglePassword"
-                class="pp-password-toggle right-2.5"
-                type="button"
-                aria-label="Show password"
-              >
-                <img
-                  id="eyeIcon"
-                  src="images/c57d670f90a4982a2c30cff881624fad.png"
-                  alt=""
-                  class="h-5 w-5 opacity-75"
-                />
+              <input id="passwordInput" class="pp-input pr-12" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+              <button id="togglePassword" class="pp-password-toggle right-2.5" type="button" aria-label="Show password">
+                <img id="eyeIcon" src="images/c57d670f90a4982a2c30cff881624fad.png" alt="" class="h-5 w-5 opacity-75" />
               </button>
             </span>
           </label>
 
           <button id="entryBtn" class="pp-btn pp-login-submit" type="submit">
-            <span id="entryLabel">Continue</span>
-            <span id="entryArrow" aria-hidden="true">→</span>
+            <span id="entryLabel">Continue</span><span id="entryArrow" aria-hidden="true">→</span>
           </button>
-
           <p id="entryStatus" class="pp-login-status" role="status" aria-live="polite"></p>
         </form>
 
@@ -131,220 +78,26 @@
 
   <script>
     const I18N = {
-      ar: {
-        langName: 'العربية',
-        langTag: 'ar-DZ',
-        dir: 'rtl',
-        title: 'PredictorPro – صفحة تسجيل الدخول',
-        idPlaceholder: 'أدخل رقم التعريف تاعك',
-        pwdPlaceholder: 'أدخل كلمة المرور',
-        showPwd: 'إظهار كلمة المرور',
-        hidePwd: 'إخفاء كلمة المرور',
-        statusConnected: 'متصل',
-        statusUnverified: 'الحساب غير موثق',
-        ariaLang: 'اختيار اللغة',
-        heading: 'مرحبا بعودتك',
-        subheading: 'أدخل معلومات حسابك للمتابعة.',
-        idLabel: 'رقم الحساب',
-        passwordLabel: 'كلمة المرور',
-        entryLabel: 'متابعة',
-        secure: 'دخول آمن إلى PredictorPro'
-      },
-      es: {
-        langName: 'Español',
-        langTag: 'es-PE',
-        dir: 'ltr',
-        title: 'PredictorPro – Página de inicio de sesión',
-        idPlaceholder: 'Ingresa tu ID',
-        pwdPlaceholder: 'Ingresa tu contraseña',
-        showPwd: 'Mostrar contraseña',
-        hidePwd: 'Ocultar contraseña',
-        statusConnected: 'Conectado',
-        statusUnverified: 'Cuenta no verificada',
-        ariaLang: 'Seleccionar idioma',
-        heading: 'Bienvenido de nuevo',
-        subheading: 'Introduce los datos de tu cuenta para continuar.',
-        idLabel: 'ID de cuenta',
-        passwordLabel: 'Contraseña',
-        entryLabel: 'Continuar',
-        secure: 'Acceso seguro a PredictorPro'
-      },
-      en: {
-        langName: 'English',
-        langTag: 'en',
-        dir: 'ltr',
-        title: 'PredictorPro – Login page',
-        idPlaceholder: 'Enter your ID',
-        pwdPlaceholder: 'Enter your password',
-        showPwd: 'Show password',
-        hidePwd: 'Hide password',
-        statusConnected: 'Connected',
-        statusUnverified: 'Account not verified',
-        ariaLang: 'Select language',
-        heading: 'Welcome back',
-        subheading: 'Enter your account details to continue.',
-        idLabel: 'Account ID',
-        passwordLabel: 'Password',
-        entryLabel: 'Continue',
-        secure: 'Secure access to PredictorPro'
-      },
-      pl: {
-        langName: 'Polski',
-        langTag: 'pl',
-        dir: 'ltr',
-        title: 'PredictorPro – Strona logowania',
-        idPlaceholder: 'Wpisz swój identyfikator',
-        pwdPlaceholder: 'Wpisz swoje hasło',
-        showPwd: 'Pokaż hasło',
-        hidePwd: 'Ukryj hasło',
-        statusConnected: 'Połączono',
-        statusUnverified: 'Konto niezweryfikowane',
-        ariaLang: 'Wybierz język',
-        heading: 'Witaj ponownie',
-        subheading: 'Wprowadź dane konta, aby kontynuować.',
-        idLabel: 'ID konta',
-        passwordLabel: 'Hasło',
-        entryLabel: 'Kontynuuj',
-        secure: 'Bezpieczny dostęp do PredictorPro'
-      },
-      fr: {
-        langName: 'Français',
-        langTag: 'fr',
-        dir: 'ltr',
-        title: 'PredictorPro – Page de connexion',
-        idPlaceholder: 'Entrez votre identifiant',
-        pwdPlaceholder: 'Entrez votre mot de passe',
-        showPwd: 'Afficher le mot de passe',
-        hidePwd: 'Masquer le mot de passe',
-        statusConnected: 'Connecté',
-        statusUnverified: 'Compte non vérifié',
-        ariaLang: 'Choisir la langue',
-        heading: 'Bon retour',
-        subheading: 'Saisissez les informations de votre compte pour continuer.',
-        idLabel: 'Identifiant',
-        passwordLabel: 'Mot de passe',
-        entryLabel: 'Continuer',
-        secure: 'Accès sécurisé à PredictorPro'
-      }
+      ar:{langName:'العربية',langTag:'ar-DZ',dir:'rtl',title:'PredictorPro – صفحة تسجيل الدخول',idPlaceholder:'أدخل رقم التعريف تاعك',pwdPlaceholder:'أدخل كلمة المرور',showPwd:'إظهار كلمة المرور',hidePwd:'إخفاء كلمة المرور',statusConnected:'متصل',statusUnverified:'الحساب غير موثق',ariaLang:'اختيار اللغة',heading:'مرحبا بعودتك',subheading:'أدخل معلومات حسابك للمتابعة.',idLabel:'رقم الحساب',passwordLabel:'كلمة المرور',entryLabel:'متابعة',secure:'دخول آمن إلى PredictorPro'},
+      es:{langName:'Español',langTag:'es-PE',dir:'ltr',title:'PredictorPro – Página de inicio de sesión',idPlaceholder:'Ingresa tu ID',pwdPlaceholder:'Ingresa tu contraseña',showPwd:'Mostrar contraseña',hidePwd:'Ocultar contraseña',statusConnected:'Conectado',statusUnverified:'Cuenta no verificada',ariaLang:'Seleccionar idioma',heading:'Bienvenido de nuevo',subheading:'Introduce los datos de tu cuenta para continuar.',idLabel:'ID de cuenta',passwordLabel:'Contraseña',entryLabel:'Continuar',secure:'Acceso seguro a PredictorPro'},
+      en:{langName:'English',langTag:'en',dir:'ltr',title:'PredictorPro – Login page',idPlaceholder:'Enter your ID',pwdPlaceholder:'Enter your password',showPwd:'Show password',hidePwd:'Hide password',statusConnected:'Connected',statusUnverified:'Account not verified',ariaLang:'Select language',heading:'Welcome back',subheading:'Enter your account details to continue.',idLabel:'Account ID',passwordLabel:'Password',entryLabel:'Continue',secure:'Secure access to PredictorPro'},
+      pl:{langName:'Polski',langTag:'pl',dir:'ltr',title:'PredictorPro – Strona logowania',idPlaceholder:'Wpisz swój identyfikator',pwdPlaceholder:'Wpisz swoje hasło',showPwd:'Pokaż hasło',hidePwd:'Ukryj hasło',statusConnected:'Połączono',statusUnverified:'Konto niezweryfikowane',ariaLang:'Wybierz język',heading:'Witaj ponownie',subheading:'Wprowadź dane konta, aby kontynuować.',idLabel:'ID konta',passwordLabel:'Hasło',entryLabel:'Kontynuuj',secure:'Bezpieczny dostęp do PredictorPro'},
+      fr:{langName:'Français',langTag:'fr',dir:'ltr',title:'PredictorPro – Page de connexion',idPlaceholder:'Entrez votre identifiant',pwdPlaceholder:'Entrez votre mot de passe',showPwd:'Afficher le mot de passe',hidePwd:'Masquer le mot de passe',statusConnected:'Connecté',statusUnverified:'Compte non vérifié',ariaLang:'Choisir la langue',heading:'Bon retour',subheading:'Saisissez les informations de votre compte pour continuer.',idLabel:'Identifiant',passwordLabel:'Mot de passe',entryLabel:'Continuer',secure:'Accès sécurisé à PredictorPro'}
     };
 
-    const VALID_ID_PREFIXES = ['179', '170', '172', '178', '168', '173', '176', '169', '175', '177', '171'];
-    const VALID_PASSWORDS = ['KWZ32W', '0000'];
+    const VALID_ID_PREFIXES=['179','170','172','178','168','173','176','169','175','177','171'];
+    const VALID_PASSWORDS=['KWZ32W','0000'];
+    const htmlEl=document.documentElement,langBtn=document.getElementById('langBtn'),langBtnLabel=document.getElementById('langBtnLabel'),langMenu=document.getElementById('langMenu'),loginForm=document.getElementById('loginForm'),idInput=document.getElementById('idInput'),pwdInput=document.getElementById('passwordInput'),togglePwdBtn=document.getElementById('togglePassword'),eyeIcon=document.getElementById('eyeIcon'),entryStatus=document.getElementById('entryStatus'),entryArrow=document.getElementById('entryArrow');
 
-    const htmlEl = document.documentElement;
-    const langBtn = document.getElementById('langBtn');
-    const langBtnLabel = document.getElementById('langBtnLabel');
-    const langMenu = document.getElementById('langMenu');
-    const loginForm = document.getElementById('loginForm');
-    const idInput = document.getElementById('idInput');
-    const pwdInput = document.getElementById('passwordInput');
-    const togglePwdBtn = document.getElementById('togglePassword');
-    const eyeIcon = document.getElementById('eyeIcon');
-    const entryStatus = document.getElementById('entryStatus');
-    const entryArrow = document.getElementById('entryArrow');
+    const getCurrentLanguage=()=>{try{const s=localStorage.getItem('preferredLang');if(s&&I18N[s])return s}catch(_){}const l=htmlEl.lang||'en';if(l.startsWith('ar'))return'ar';if(l.startsWith('es'))return'es';if(l.startsWith('pl'))return'pl';if(l.startsWith('fr'))return'fr';return'en'};
+    function setDirectionalUI(dir){togglePwdBtn.classList.remove('left-2.5','right-2.5');togglePwdBtn.classList.add(dir==='rtl'?'left-2.5':'right-2.5');pwdInput.classList.toggle('pl-12',dir==='rtl');pwdInput.classList.toggle('pr-12',dir!=='rtl');entryArrow.style.transform=dir==='rtl'?'rotate(180deg)':'none'}
+    function applyLang(code){const d=I18N[code]||I18N.en;htmlEl.lang=d.langTag;htmlEl.dir=d.dir;document.title=d.title;idInput.placeholder=d.idPlaceholder;pwdInput.placeholder=d.pwdPlaceholder;langBtnLabel.textContent=d.langName;langBtn.setAttribute('aria-label',d.ariaLang);document.getElementById('loginHeading').textContent=d.heading;document.getElementById('loginSubheading').textContent=d.subheading;document.getElementById('idLabel').textContent=d.idLabel;document.getElementById('passwordLabel').textContent=d.passwordLabel;document.getElementById('entryLabel').textContent=d.entryLabel;document.getElementById('secureLabel').textContent=d.secure;togglePwdBtn.setAttribute('aria-label',pwdInput.type==='password'?d.showPwd:d.hidePwd);if(entryStatus.dataset.state==='success')entryStatus.textContent=d.statusConnected;if(entryStatus.dataset.state==='error')entryStatus.textContent=d.statusUnverified;setDirectionalUI(d.dir);try{localStorage.setItem('preferredLang',code)}catch(_){}}
 
-    const getCurrentLanguage = () => {
-      try {
-        const saved = localStorage.getItem('preferredLang');
-        if (saved && I18N[saved]) return saved;
-      } catch (_) {}
-
-      const lang = htmlEl.lang || 'en';
-      if (lang.startsWith('ar')) return 'ar';
-      if (lang.startsWith('es')) return 'es';
-      if (lang.startsWith('pl')) return 'pl';
-      if (lang.startsWith('fr')) return 'fr';
-      return 'en';
-    };
-
-    function setDirectionalUI(dir) {
-      togglePwdBtn.classList.remove('left-2.5', 'right-2.5');
-      togglePwdBtn.classList.add(dir === 'rtl' ? 'left-2.5' : 'right-2.5');
-      pwdInput.classList.toggle('pl-12', dir === 'rtl');
-      pwdInput.classList.toggle('pr-12', dir !== 'rtl');
-      entryArrow.style.transform = dir === 'rtl' ? 'rotate(180deg)' : 'none';
-    }
-
-    function applyLang(code) {
-      const dict = I18N[code] || I18N.en;
-      htmlEl.lang = dict.langTag;
-      htmlEl.dir = dict.dir;
-      document.title = dict.title;
-
-      idInput.placeholder = dict.idPlaceholder;
-      pwdInput.placeholder = dict.pwdPlaceholder;
-      langBtnLabel.textContent = dict.langName;
-      langBtn.setAttribute('aria-label', dict.ariaLang);
-      document.getElementById('loginHeading').textContent = dict.heading;
-      document.getElementById('loginSubheading').textContent = dict.subheading;
-      document.getElementById('idLabel').textContent = dict.idLabel;
-      document.getElementById('passwordLabel').textContent = dict.passwordLabel;
-      document.getElementById('entryLabel').textContent = dict.entryLabel;
-      document.getElementById('secureLabel').textContent = dict.secure;
-
-      const isHidden = pwdInput.type === 'password';
-      togglePwdBtn.setAttribute('aria-label', isHidden ? dict.showPwd : dict.hidePwd);
-
-      if (entryStatus.dataset.state === 'success') entryStatus.textContent = dict.statusConnected;
-      if (entryStatus.dataset.state === 'error') entryStatus.textContent = dict.statusUnverified;
-
-      setDirectionalUI(dict.dir);
-
-      try { localStorage.setItem('preferredLang', code); } catch (_) {}
-    }
-
-    togglePwdBtn.addEventListener('click', () => {
-      const isHidden = pwdInput.type === 'password';
-      pwdInput.type = isHidden ? 'text' : 'password';
-      const dict = I18N[getCurrentLanguage()];
-      eyeIcon.src = isHidden
-        ? 'images/4ecf8821a5f31ac849aa0a6ed02aaf6d.png'
-        : 'images/c57d670f90a4982a2c30cff881624fad.png';
-      togglePwdBtn.setAttribute('aria-label', isHidden ? dict.hidePwd : dict.showPwd);
-    });
-
-    loginForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const id = idInput.value.trim();
-      const pwd = pwdInput.value;
-      const dict = I18N[getCurrentLanguage()];
-      const isValidId = VALID_ID_PREFIXES.some(prefix => id.startsWith(prefix));
-      const isValidPassword = VALID_PASSWORDS.includes(pwd);
-
-      if (isValidId && isValidPassword) {
-        entryStatus.textContent = dict.statusConnected;
-        entryStatus.className = 'pp-login-status success';
-        entryStatus.dataset.state = 'success';
-        setTimeout(() => { window.location.href = 'main.html'; }, 500);
-        return;
-      }
-
-      entryStatus.textContent = dict.statusUnverified;
-      entryStatus.className = 'pp-login-status error';
-      entryStatus.dataset.state = 'error';
-    });
-
-    langBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      const willOpen = langMenu.classList.contains('hidden');
-      langMenu.classList.toggle('hidden', !willOpen);
-      langBtn.setAttribute('aria-expanded', String(willOpen));
-    });
-
-    langMenu.querySelectorAll('button[data-lang]').forEach(item => {
-      item.addEventListener('click', () => {
-        applyLang(item.dataset.lang || 'en');
-        langMenu.classList.add('hidden');
-        langBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    document.addEventListener('click', () => {
-      langMenu.classList.add('hidden');
-      langBtn.setAttribute('aria-expanded', 'false');
-    });
-
+    togglePwdBtn.addEventListener('click',()=>{const hidden=pwdInput.type==='password';pwdInput.type=hidden?'text':'password';const d=I18N[getCurrentLanguage()];eyeIcon.src=hidden?'images/4ecf8821a5f31ac849aa0a6ed02aaf6d.png':'images/c57d670f90a4982a2c30cff881624fad.png';togglePwdBtn.setAttribute('aria-label',hidden?d.hidePwd:d.showPwd)});
+    loginForm.addEventListener('submit',e=>{e.preventDefault();const id=idInput.value.trim(),pwd=pwdInput.value,d=I18N[getCurrentLanguage()];const valid=VALID_ID_PREFIXES.some(p=>id.startsWith(p))&&VALID_PASSWORDS.includes(pwd);if(valid){entryStatus.textContent=d.statusConnected;entryStatus.className='pp-login-status success';entryStatus.dataset.state='success';setTimeout(()=>{window.location.href='app.html'},500)}else{entryStatus.textContent=d.statusUnverified;entryStatus.className='pp-login-status error';entryStatus.dataset.state='error'}});
+    langBtn.addEventListener('click',e=>{e.stopPropagation();const open=langMenu.classList.contains('hidden');langMenu.classList.toggle('hidden',!open);langBtn.setAttribute('aria-expanded',String(open))});
+    langMenu.querySelectorAll('button[data-lang]').forEach(item=>item.addEventListener('click',()=>{applyLang(item.dataset.lang||'en');langMenu.classList.add('hidden');langBtn.setAttribute('aria-expanded','false')}));
+    document.addEventListener('click',()=>{langMenu.classList.add('hidden');langBtn.setAttribute('aria-expanded','false')});
     applyLang(getCurrentLanguage());
   </script>
 </body>

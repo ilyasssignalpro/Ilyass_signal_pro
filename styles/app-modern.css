@@ -1,0 +1,325 @@
+/* Full-site PredictorPro modernization layer.
+   Loaded after each legacy page's inline styles by app.html so existing game logic stays untouched. */
+
+html.pp-modernized {
+  scroll-behavior: smooth;
+}
+
+html.pp-modernized body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  color: var(--pp-text) !important;
+  background: var(--pp-bg) !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+html.pp-modernized body.diamond-bg::before {
+  background:
+    radial-gradient(circle at 12% 6%, rgba(34,197,94,.18), transparent 28rem),
+    radial-gradient(circle at 88% 22%, rgba(16,185,129,.10), transparent 32rem),
+    linear-gradient(180deg, #f9fdfb 0%, #eef9f2 50%, #e6f5eb 100%) !important;
+}
+
+html.dark.pp-modernized body.diamond-bg::before {
+  background:
+    radial-gradient(circle at 14% 4%, rgba(34,197,94,.19), transparent 30rem),
+    radial-gradient(circle at 86% 24%, rgba(16,185,129,.10), transparent 32rem),
+    linear-gradient(180deg, #030604 0%, #071009 50%, #08150d 100%) !important;
+}
+
+html.pp-modernized body.diamond-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .25;
+  background-image:
+    linear-gradient(rgba(34,197,94,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, #000, transparent 86%);
+}
+
+/* Header / navigation */
+html.pp-modernized body > header,
+html.pp-modernized header.lgx-nav {
+  min-height: 76px !important;
+  border-bottom: 1px solid var(--pp-border) !important;
+  background: color-mix(in srgb, var(--pp-bg-elevated) 91%, transparent) !important;
+  backdrop-filter: blur(24px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(145%) !important;
+  box-shadow: 0 14px 42px rgba(0,0,0,.09) !important;
+}
+
+html.pp-modernized body > header > div,
+html.pp-modernized header.lgx-nav > div {
+  max-width: 1180px !important;
+  margin-inline: auto !important;
+  padding: .7rem 1rem !important;
+  gap: .85rem !important;
+}
+
+html.pp-modernized header img[alt="PredictorPro"] {
+  width: 58px !important;
+  height: 58px !important;
+  border: 2px solid var(--pp-border-strong) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 10px 32px rgba(34,197,94,.18), 0 0 0 6px rgba(34,197,94,.05) !important;
+}
+
+html.pp-modernized #langBtn,
+html.pp-modernized #themeToggle,
+html.pp-modernized .nav-badge,
+html.pp-modernized .online-pill,
+html.pp-modernized .support-top,
+html.pp-modernized #faqButtonTop,
+html.pp-modernized #mobileMenuToggle {
+  border: 1px solid var(--pp-border) !important;
+  border-radius: 9999px !important;
+  background: var(--pp-bg-elevated) !important;
+  color: var(--pp-text) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.10) !important;
+  backdrop-filter: blur(18px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease !important;
+}
+
+html.pp-modernized #langBtn:hover,
+html.pp-modernized #themeToggle:hover,
+html.pp-modernized .nav-badge:hover,
+html.pp-modernized .support-top:hover,
+html.pp-modernized #faqButtonTop:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--pp-border-strong) !important;
+}
+
+html.pp-modernized #themeToggle {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  padding: 0 !important;
+  ring: none !important;
+}
+
+/* Overlay menus / modals */
+html.pp-modernized #langMenu,
+html.pp-modernized .glass-menu,
+html.pp-modernized #faqPanel,
+html.pp-modernized [id*="Modal"] > div:not(.absolute) {
+  border: 1px solid var(--pp-border) !important;
+  border-radius: 1.25rem !important;
+  background: var(--pp-surface-strong) !important;
+  color: var(--pp-text) !important;
+  box-shadow: var(--pp-shadow) !important;
+  backdrop-filter: blur(26px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(145%) !important;
+}
+
+html.pp-modernized #langMenu button:hover {
+  background: var(--pp-primary-soft) !important;
+  color: var(--pp-primary) !important;
+}
+
+/* Main layout */
+html.pp-modernized main {
+  width: min(1180px, calc(100% - 2rem)) !important;
+  margin-inline: auto !important;
+}
+
+html.pp-modernized main > * {
+  max-width: 100%;
+}
+
+html.pp-modernized h1,
+html.pp-modernized h2,
+html.pp-modernized h3,
+html.pp-modernized h4 {
+  letter-spacing: -.03em !important;
+}
+
+/* Shared glass panels */
+html.pp-modernized .lgx-card,
+html.pp-modernized .pp-card,
+html.pp-modernized main .bg-gray-100,
+html.pp-modernized main .dark\:bg-gray-800,
+html.pp-modernized main .dark\:bg-gray-900,
+html.pp-modernized main [class*="rounded-2xl"][class*="border"],
+html.pp-modernized main [class*="rounded-xl"][class*="border"] {
+  border: 1px solid var(--pp-border) !important;
+  background: linear-gradient(145deg, var(--pp-surface-strong), var(--pp-surface)) !important;
+  box-shadow: var(--pp-shadow-soft) !important;
+  backdrop-filter: blur(22px) saturate(135%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(135%) !important;
+}
+
+html.pp-modernized .lgx-card,
+html.pp-modernized main [class*="rounded-2xl"] {
+  border-radius: 1.5rem !important;
+}
+
+/* Buttons */
+html.pp-modernized main button:not(#themeToggle):not(#langBtn):not([id*="Close"]),
+html.pp-modernized .lgx-btn,
+html.pp-modernized a.lgx-btn {
+  border: 1px solid var(--pp-border-strong) !important;
+  border-radius: 1rem !important;
+  background: linear-gradient(135deg, var(--pp-primary), var(--pp-primary-strong)) !important;
+  color: #041108 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 11px 28px rgba(34,197,94,.18) !important;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+}
+
+html.pp-modernized main button:not(#themeToggle):not(#langBtn):hover,
+html.pp-modernized .lgx-btn:hover,
+html.pp-modernized a.lgx-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 36px rgba(34,197,94,.25) !important;
+  filter: saturate(1.08) !important;
+}
+
+html.pp-modernized #resetBtn,
+html.pp-modernized button[aria-label*="reset" i],
+html.pp-modernized button[aria-label*="إعادة"] {
+  background: var(--pp-bg-elevated) !important;
+  color: var(--pp-text) !important;
+  border-color: var(--pp-border) !important;
+  box-shadow: var(--pp-shadow-soft) !important;
+}
+
+/* Game surfaces */
+html.pp-modernized #minesGrid {
+  gap: .7rem !important;
+  padding: 1rem !important;
+  border: 1px solid var(--pp-border-strong) !important;
+  border-radius: 1.65rem !important;
+  background: linear-gradient(145deg, var(--pp-surface-strong), var(--pp-surface)) !important;
+  box-shadow: var(--pp-shadow) !important;
+}
+
+html.pp-modernized #minesGrid > * {
+  border-radius: .95rem !important;
+  border-color: var(--pp-border) !important;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
+}
+
+html.pp-modernized #minesGrid > *:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--pp-border-strong) !important;
+}
+
+html.pp-modernized #overlay {
+  border-radius: 1.65rem !important;
+  background: color-mix(in srgb, var(--pp-bg-elevated) 88%, transparent) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+html.pp-modernized canvas,
+html.pp-modernized [id*="game" i],
+html.pp-modernized [id*="board" i],
+html.pp-modernized [id*="field" i] {
+  max-width: 100% !important;
+}
+
+/* FAQ + floating support */
+html.pp-modernized #faqButton,
+html.pp-modernized body > div.fixed.bottom-4.right-4 {
+  border: 1px solid var(--pp-border) !important;
+  border-radius: 1.2rem !important;
+  background: var(--pp-bg-elevated) !important;
+  color: var(--pp-text) !important;
+  box-shadow: var(--pp-shadow-soft) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+}
+
+html.pp-modernized body > div.fixed.bottom-4.right-4 a {
+  border: 1px solid var(--pp-border-strong) !important;
+  background: var(--pp-primary-soft) !important;
+}
+
+/* Improve input/select controls that appear on game pages */
+html.pp-modernized input,
+html.pp-modernized select,
+html.pp-modernized textarea {
+  min-height: 44px;
+  border: 1px solid var(--pp-border) !important;
+  border-radius: 1rem !important;
+  background: var(--pp-surface) !important;
+  color: var(--pp-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+html.pp-modernized input:focus,
+html.pp-modernized select:focus,
+html.pp-modernized textarea:focus {
+  outline: none !important;
+  border-color: var(--pp-primary) !important;
+  box-shadow: 0 0 0 4px var(--pp-primary-soft) !important;
+}
+
+/* Scrollbar */
+html.pp-modernized * {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(74,222,128,.45) transparent;
+}
+
+html.pp-modernized ::-webkit-scrollbar { width: 9px; height: 9px; }
+html.pp-modernized ::-webkit-scrollbar-track { background: transparent; }
+html.pp-modernized ::-webkit-scrollbar-thumb {
+  background: rgba(74,222,128,.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+@media (max-width: 768px) {
+  html.pp-modernized body > header,
+  html.pp-modernized header.lgx-nav {
+    min-height: 66px !important;
+  }
+
+  html.pp-modernized header img[alt="PredictorPro"] {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  html.pp-modernized body > header > div,
+  html.pp-modernized header.lgx-nav > div {
+    padding: .55rem .75rem !important;
+  }
+
+  html.pp-modernized main {
+    width: min(100% - 1rem, 760px) !important;
+    padding-left: .25rem !important;
+    padding-right: .25rem !important;
+  }
+
+  html.pp-modernized #faqButton {
+    left: .75rem !important;
+    bottom: .75rem !important;
+  }
+
+  html.pp-modernized body > div.fixed.bottom-4.right-4 {
+    right: .75rem !important;
+    bottom: .75rem !important;
+    padding: .55rem !important;
+  }
+
+  html.pp-modernized body > div.fixed.bottom-4.right-4 img {
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.pp-modernized *,
+  html.pp-modernized *::before,
+  html.pp-modernized *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
